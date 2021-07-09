@@ -9,7 +9,7 @@ namespace TemplateNetCore.Repository.EF
         {
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            builder.UseNpgsql("Server=192.168.99.100;Port=5432;Database=template_net_core;User Id=postgres;Password=postgres;");
+            builder.UseSqlServer("Server=DESKTOP-52NHAEM;Database=asp-net-concurrency-sample;Trusted_Connection=True;");
 
             return new ApplicationDbContext(builder.Options);
         }

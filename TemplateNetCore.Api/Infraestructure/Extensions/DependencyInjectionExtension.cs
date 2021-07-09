@@ -16,7 +16,12 @@ namespace TemplateNetCore.Api.Infraestructure.Extensions
     {
         public static void AddDbContext(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options
+                    .UseSqlServer(connectionString)
+                    .EnableSensitiveDataLogging();
+            });
         }
 
         public static IServiceCollection AddScopedServices(this IServiceCollection services)
