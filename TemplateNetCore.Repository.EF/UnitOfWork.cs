@@ -60,6 +60,11 @@ namespace TemplateNetCore.Repository.EF
             }
         }
 
+        public IDatabaseTransaction BeginTransaction()
+        {
+            return new DatabaseTransaction(context);
+        }
+
         public void Commit()
         {
             context.SaveChanges();

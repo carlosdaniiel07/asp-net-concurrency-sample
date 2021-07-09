@@ -12,6 +12,7 @@ namespace TemplateNetCore.Repository
         IVoucherRepository VoucherRepository { get; }
         IRepository<UserVoucher> UserVoucherRepository { get; }
 
+        IDatabaseTransaction BeginTransaction();
         void Commit();
         Task CommitAsync();
     }
