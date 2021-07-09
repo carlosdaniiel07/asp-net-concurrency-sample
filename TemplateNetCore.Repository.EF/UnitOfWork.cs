@@ -1,6 +1,10 @@
 ﻿using System.Threading.Tasks;
+using TemplateNetCore.Domain.Entities.Vouchers;
 using TemplateNetCore.Repository.EF.Repositories.Users;
+using TemplateNetCore.Repository.EF.Repositories.Vouchers;
+using TemplateNetCore.Repository.Interfaces;
 using TemplateNetCore.Repository.Interfaces.Users;
+using TemplateNetCore.Repository.Interfaces.Vouchers;
 
 namespace TemplateNetCore.Repository.EF
 {
@@ -9,6 +13,8 @@ namespace TemplateNetCore.Repository.EF
         private readonly ApplicationDbContext context;
 
         private UserRepository _userRepository;
+        private VoucherRepository _voucherRepository;
+        private UserVoucherRepository _userVoucherRepository;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -25,6 +31,32 @@ namespace TemplateNetCore.Repository.EF
                 }
 
                 return _userRepository;
+            }
+        }
+
+        public IVoucherRepository VoucherRepository
+        {
+            get
+            {
+                if (_voucherRepository == null)
+                {
+                    _voucherRepository = new VoucherRepository(context);
+                }
+
+                return _voucherRepository;
+            }
+        }
+
+        public IRepository<UserVoucher> UserVoucherRepository
+        {
+            get
+            {
+                if (_userVoucherRepository == null)
+                {
+                    _userVoucherRepository = new UserVoucherRepository(context);
+                }
+
+                return _userVoucherRepository;
             }
         }
 
