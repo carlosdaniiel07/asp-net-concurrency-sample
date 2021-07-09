@@ -4,11 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TemplateNetCore.Domain.Interfaces.Users;
+using TemplateNetCore.Domain.Interfaces.Vouchers;
 using TemplateNetCore.Repository;
 using TemplateNetCore.Repository.EF;
 using TemplateNetCore.Repository.EF.Repositories;
 using TemplateNetCore.Repository.Interfaces;
 using TemplateNetCore.Service.Users;
+using TemplateNetCore.Service.Vouchers;
 
 namespace TemplateNetCore.Api.Infraestructure.Extensions
 {
@@ -37,6 +39,7 @@ namespace TemplateNetCore.Api.Infraestructure.Extensions
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IHashService, HashService>();
             services.AddTransient<ITokenService, TokenService>();
+            services.AddTransient<IVoucherService, VoucherService>();
 
             return services;
         }
